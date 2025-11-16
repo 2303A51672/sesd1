@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Code Showcase</title>
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --panel:#0b1220;
+      --muted:#94a3b8;
+      --accent:#60a5fa;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+     html,body{
+      height:100%;
+      margin:0;
+      background: linear-gradient(180deg, #071226 0%, #08142a 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:36px auto;
+      padding:24px;
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:20px;
+    }
+
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background: linear-gradient(135deg,var(--accent),#2563eb);
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:#04203a;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    }
+
+    h1{
+      margin:0;
+      font-size:1.6rem;
+      letter-spacing:-0.02em;
+    }
+
+    p.lead{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    main{
+      display:grid;
+      gap:18px;
+      grid-template-columns: 1fr;
+    }
+
+    @media(min-width:900px){
+      main{ grid-template-columns: 1fr 360px; align-items:start; }
+    }
+
+    /* Panel */
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--panel);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 8px 28px rgba(2,6,23,0.5);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Code area */
+    pre.codeblock{
+      margin:0;
+      padding:14px;
+      border-radius:10px;
+      background: linear-gradient(180deg,#071224,#041022);
+      overflow:auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+      font-size:0.92rem;
+      line-height:1.45;
+      color:#dbeafe;
+      position:relative;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: inset 0 -2px 8px rgba(0,0,0,0.5);
+      white-space:pre;
+    }
+
+    .code-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      margin-bottom:10px;
+    }
+
+    .lang{
+      font-weight:600;
+      color:var(--accent);
+      font-size:0.92rem;
+    }
+
+    .muted{
+      color:var(--muted);
+      font-size:0.88rem;
+    }
+
+    .btns{
+      display:flex;
+      gap:8px;
+    }
+
+    button.btn{
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.04);
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:0.9rem;
+    }
+
+    button.btn:hover{ color:#fff; transform:translateY(-1px); }
+
+    /* line numbers */
+    .code-wrap{ position:relative; }
+    .lines{
+      counter-reset: linenumber;
+      padding-left:10px;
+      display:inline-block;
+      vertical-align:top;
+      user-select:none;
+      text-align:right;
+      margin-right:12px;
+      color: #94a3b8;
+      font-size:0.86rem;
+    }
+    .lines span{
+      display:block;
+      counter-increment: linenumber;
+      padding:2px 6px;
+    }
+    .lines span::before{
+      content: counter(linenumber);
+      display:inline-block;
+      min-width:2.2em;
+    }
+    .code-content{ display:inline-block; width:calc(100% - 48px); vertical-align:top; }
+
+    /* Sidebar: about */
+    .about h3{ margin-top:0; }
+    .small{
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+
+    footer{
+      margin-top:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">CODE</div>
+      <div>
+        <h1>Code Showcase — snippets & examples</h1>
+        <p class="lead">Small, copy-ready code examples in multiple languages. Click <em>Copy</em> to copy a snippet to your clipboard.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <!-- HTML snippet -->
+        <div class="code-meta">
+          <div class="lang">HTML</div>
+          <div class="btns">
+            <button class="btn" data-action="copy" data-target="html-snippet">Copy</button>
+            <button class="btn" data-action="download" data-target="html-snippet" data-fname="example.html">Download</button>
+          </div>
+        </div>
+
+        <div class="code-wrap" aria-hidden="false">
+          <pre id="html-snippet" class="codeblock" tabindex="0">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
+    &lt;p&gt;This is a simple HTML page.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </pre>
+        </div>
+
+        <hr style="border:none;height:14px;background:transparent">
+
+        <!-- JavaScript snippet -->
+        <div class="code-meta">
+          <div class="lang">JavaScript</div>
+          <div class="btns">
+            <button class="btn" data-action="copy" data-target="js-snippet">Copy</button>
+            <button class="btn" data-action="download" data-target="js-snippet" data-fname="example.js">Download</button>
+          </div>
+        </div>
+
+        <pre id="js-snippet" class="codeblock" tabindex="0">
+/**
+ * Debounced logger — waits until user stops calling `log` for 300ms:
+ */
+function debounce(fn, ms = 300){
+  let t = null;
+  return (...args) => {
+    clearTimeout(t);
+    t = setTimeout(()=> fn(...args), ms);
+  };
+}
+
+const log = debounce((msg)=> console.log('LOG:', msg), 300);
+
+log('first');
+log('still typing...');
+setTimeout(()=> log('done'), 500);
+        </pre>
+
+        <hr style="border:none;height:14px;background:transparent">
+
+        <!-- Python snippet with simple line numbers -->
+        <div class="code-meta">
+          <div class="lang">Python</div>
+          <div class="btns">
+            <button class="btn" data-action="copy" data-target="py-snippet">Copy</button>
+            <button class="btn" data-action="download" data-target="py-snippet" data-fname="example.py">Download</button>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <div class="lines" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="code-content" style="width:100%;">
+            <pre id="py-snippet" class="codeblock" tabindex="0">
+def fibonacci(n):
+    """Return first n Fibonacci numbers as a list."""
+    if n <= 0:
+        return []
+    seq = [0, 1]
+    while len(seq) < n:
+        seq.append(seq[-1] + seq[-2])
+    return seq[:n]
+
+if __name__ == '__main__':
+    print(fibonacci(10))
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel about">
+        <h3>About this page</h3>
+        <p class="small">This simple showcase demonstrates clean, accessible code blocks and small utilities like copy & download. You can add more snippets below or replace the examples.</p>
+
+        <h3 style="margin-top:16px">Tips</h3>
+        <ul class="small">
+          <li>Click <strong>Copy</strong> to copy the snippet text to your clipboard.</li>
+          <li>Use <strong>Download</strong> to get the snippet as a file.</li>
+          <li>Press <code>Tab</code> inside a code block to focus and scroll with the keyboard.</li>
+        </ul>
+
+        <h3 style="margin-top:16px">Quick actions</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <button class="btn" onclick="addSnippet()">Add a new snippet</button>
+          <button class="btn" onclick="minifyExample()">Minify JS example</button>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Built with ❤️ — copy, edit, and reuse.
+    </footer>
+  </div>
+
+  <script>
+    // Utility: get text content of a pre/code element (preserve newlines)
+    function getSnippetText(el){
+      // innerText preserves visual whitespace better than textContent in many browsers
+      return el.innerText.replace(/\u00A0/g, ' ');
+    }
+
+    // Copy handler
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button[data-action="copy"]');
+      if (!btn) return;
+      const targetId = btn.getAttribute('data-target');
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const text = getSnippetText(el);
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Copied ✓';
+        setTimeout(()=> btn.textContent = 'Copy', 1400);
+      } catch (err){
+        console.error('Copy failed', err);
+        alert('Copy failed — your browser may block clipboard access.');
+      }
+    });
+
+    // Download handler
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-action="download"]');
+      if (!btn) return;
+      const targetId = btn.getAttribute('data-target');
+      const fname = btn.getAttribute('data-fname') || 'snippet.txt';
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const blob = new Blob([getSnippetText(el)], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // Add a new snippet (example interactive action)
+    function addSnippet(){
+      const html = `\n<!-- New snippet added -->\n<pre class="codeblock" tabindex="0">console.log('New snippet')</pre>\n`;
+      const mainPanel = document.querySelector('main > section');
+      const node = document.createElement('div');
+      node.className = 'code-meta';
+      node.innerHTML = '<div class="lang">New</div><div class="btns"><button class="btn">Copy</button></div>';
+      mainPanel.appendChild(node);
+      const pre = document.createElement('pre');
+      pre.className = 'codeblock';
+      pre.textContent = "console.log('New snippet')";
+      mainPanel.appendChild(pre);
+      alert('A new snippet was added to the bottom of the page (demo).');
+    }
+
+    // Simple "minify" example for the JS snippet (very naive: remove blank lines & comments)
+    function minifyExample(){
+      const el = document.getElementById('js-snippet');
+      if (!el) return;
+      let txt = getSnippetText(el);
+      // remove block and line comments (naive) and blank lines
+      txt = txt.replace(/\/\*[\s\S]*?\*\//g, '')
+               .replace(/\/\/.*$/gm, '')
+               .split('\\n').map(l => l.trim()).filter(Boolean).join('\\n');
+      el.innerText = txt;
+      alert('JS example minified (naive).');
+    }
+
+    // Allow focusing pre with keyboard and improving accessibility
+    document.querySelectorAll('pre.codeblock').forEach(p => {
+      p.addEventListener('keydown', (ev) => {
+        // Ctrl+A to select all inside the pre
+        if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'a') {
+          ev.preventDefault();
+          const range = document.createRange();
+          range.selectNodeContents(p);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+      });
+    });
+
+    // Simple graceful fallback if clipboard API isn't available
+    if (!navigator.clipboard) {
+      console.info('Clipboard API not available — copy will attempt execCommand fallback.');
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action="copy"]');
+        if (!btn) return;
+        const targetId = btn.getAttribute('data-target');
+        const el = document.getElementById(targetId);
+        if (!el) return;
+        const text = getSnippetText(el);
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          btn.textContent = 'Copied ✓';
+          setTimeout(()=> btn.textContent = 'Copy', 1400);
+        } catch (err) {
+          alert('Copy failed. Please select the text and press Ctrl+C (Cmd+C on Mac).');
+        } finally {
+          textarea.remove();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
